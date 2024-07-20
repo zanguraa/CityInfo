@@ -22,11 +22,15 @@ namespace CityInfo.API.Services
         {
             if (includepointsOfInterest)
             {
-                return await _cityInfoContext.Cities.Include(c => c.PointOfInterest)
-                    .Where(c => c.Id == CityId).FirstOrDefaultAsync();
+                return await _cityInfoContext.Cities
+                    .Include(c => c.PointOfInterest)
+                    .Where(c => c.Id == CityId)
+                    .FirstOrDefaultAsync();
             }
+
             return await _cityInfoContext.Cities
-                .Where(c => c.Id == CityId).FirstOrDefaultAsync();
+                .Where(c => c.Id == CityId)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<PointOfInterest?> GetPointOfInterestForCityAsync(int CityId, int PointId)

@@ -11,6 +11,9 @@ namespace CityInfo.API.Profiles
             CreateMap<Entities.City, Models.CityWithoutPointsOfInterestDto>();
             CreateMap<Entities.City, Models.CityDto>();
             CreateMap<PointOfInterest, PointOfInterestDto>();
+
+            CreateMap<City, CityDto>()
+           .ForMember(dest => dest.PointOfInterests, opt => opt.MapFrom(src => src.PointOfInterest));
         }
     }
 }
