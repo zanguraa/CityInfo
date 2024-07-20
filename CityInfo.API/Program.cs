@@ -38,15 +38,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
 
-builder.Services.AddTransient<IMailService,LocalMailService>();
-
-builder.Services.AddTransient<CitiesDataStore>();
+builder.Services.AddTransient<IMailService, LocalMailService>();
 
 var configuration = builder.Configuration;
 
 builder.Services.AddDbContext<CityInfoContext>(dbContextOptions =>
-    dbContextOptions.UseSqlServer(configuration["ConnectionStrings:ConnectionString"]));
+    dbContextOptions.UseSqlServer(configuration["GetConnectionStrings:ConnectionString"]));
 
+builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
