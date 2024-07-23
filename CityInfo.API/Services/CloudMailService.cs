@@ -4,6 +4,7 @@
     {
         private string _mailTo = string.Empty;
         private string _mailFrom = string.Empty;
+        private string _mail = string.Empty;
 
         public CloudMailService(IConfiguration configuration)
         {
