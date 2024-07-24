@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 
 namespace CityInfo.API.Controllers
 {
@@ -70,7 +71,7 @@ namespace CityInfo.API.Controllers
                 signingCredentials: signingCredentials);
 
             var tokenToReturn = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-
+            Log.Information("Generated Token: {Token}", tokenToReturn);
             return Ok(tokenToReturn);
         }
 
